@@ -1,4 +1,5 @@
 import tables from './data/tables.js';
+import reservations from './data/reservations.js';
 import {connection, closeConnection} from './mongoDB/mongoConnection.js';
 
 async function main() {
@@ -35,6 +36,19 @@ async function main() {
     //delete table 17
     try{
         await tables.removeByNumber(17)
+    }
+    catch(e){
+        console.log(e);
+    }
+
+    try{
+        let startTime = new Date();
+        for (let i=0; i<=10; i++) {
+            startTime.setDate(startTime.getDate()+i);
+            let endTime = startTime;
+            endTime.setHours(endTime.getHours()+1);
+            await reservations.create("person", String(i), "0000000"+String(i), startTime, endTime, i+1)
+        }
     }
     catch(e){
         console.log(e);
