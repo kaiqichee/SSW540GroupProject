@@ -20,15 +20,17 @@ function spaces(x){
 }
 
 const exportedMethods = {
-    async create(firstName, lastName, cwid, startTime, endTime, tableNum){
+    async create(firstName, lastName, email, cwid, startTime, endTime, tableNum, confirmed){
         const  resCollection = await reservations();
         let newRes ={
             firstName,
             lastName,
+            email,
             cwid,
             startTime,
             endTime,
-            tableNum
+            tableNum,
+            confirmed: false, //field to see if they confirm that they have shown up
         }
         const insertRes = await  resCollection.insertOne(newRes);
         if (!insertRes.acknowledged || !insertRes.insertedId){
@@ -79,6 +81,32 @@ const exportedMethods = {
         }
         return `Table ${number} has been successfully deleted`;
     },
+
+    async  confirmRes(id){
+        const  resCollection = await reservations();
+        id = new ObjectId(id);
+        const specificRes = await resCollection.findOne({_id:id});
+        if (specificRes === null){
+            throw 'Error: No reservation with given id';
+        }
+        let updateRes = {
+            firstName: specificRes.firstName,
+            lastName: specificRes.lastName,
+            email: specificRes.email,
+            cwid: specificRes.cwid,
+            startTime: specificRes.startTime,
+            endTime: specificRes.endTime,
+            tableNum: specificRes.tableNum,
+            confirmed: true
+        }
+        const updatedRes = await resCollection.updateOne({_id:id}, {$set:updateRes});
+        if (updatedRes === 0){
+            throw 'Error: Table occupancy could not be updated';
+        }
+        let upRes = await this.getById(id.toString());
+        upRes._id=upRes._id.toString();
+        return upRes;
+    }
 };
 
 export default exportedMethods;

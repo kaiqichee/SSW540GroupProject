@@ -47,12 +47,28 @@ async function main() {
             startTime.setDate(startTime.getDate()+i);
             let endTime = startTime;
             endTime.setHours(endTime.getHours()+1);
-            await reservations.create("person", String(i), "0000000"+String(i), startTime, endTime, i+1)
+            await reservations.create("person", String(i), "person"+String(i)+"@test.com", "0000000"+String(i), startTime, endTime, i+1)
         }
     }
     catch(e){
         console.log(e);
     }
+
+    // try{
+    //    await reservations.confirmRes("640e3d87d2659b4e13aaefae")
+    // }
+    // catch(e){
+    //     console.log(e);
+    // }
+
+    // try{
+    //    let res = await reservations.getByTableNum(4)
+    //    console.log(res)
+        
+    // }
+    // catch(e){
+    //     console.log(e);
+    // }
 
     await closeConnection();
 }
