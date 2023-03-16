@@ -1,11 +1,12 @@
 import tables from './data/tables.js';
 import reservations from './data/reservations.js';
+import users from './data/users.js';
 import {connection, closeConnection} from './mongoDB/mongoConnection.js';
 
 async function main() {
     const db = await connection();
     db.dropDatabase();
-    // create all tables in db, all are unoccupied
+    //create all tables in db, all are unoccupied
     try{
         for (let i=1; i<=10; i++) {
             await tables.create(i, 1)
@@ -41,6 +42,7 @@ async function main() {
         console.log(e);
     }
 
+    //create reservations
     try{
         let startTime = new Date();
         for (let i=0; i<=10; i++) {
@@ -53,7 +55,7 @@ async function main() {
     catch(e){
         console.log(e);
     }
-
+    // test reservation confirmation
     // try{
     //    await reservations.confirmRes("640e3d87d2659b4e13aaefae")
     // }
@@ -69,6 +71,28 @@ async function main() {
     // catch(e){
     //     console.log(e);
     // }
+    // create users
+    try{
+        for (let i=1; i<=5; i++) {
+            await users.create("student"+String(i)+"@test.com", "password"+String(i), "0000000"+String(i));
+        }
+    }
+    catch(e){
+        console.log(e);
+    }
+    //test verifyUser function
+    // try{
+    //     let test = await users.verifyUser("student2@test.com", "password0");
+    //     console.log(test);
+
+    //     let test1 = await users.verifyUser("student1@test.com", "password1");
+    //     console.log(test1)
+    
+    // }
+    // catch(e){
+    //     console.log(e);
+    // }
+
 
     await closeConnection();
 }

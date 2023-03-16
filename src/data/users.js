@@ -1,11 +1,13 @@
 import { users } from '../mongoDB/mongoCollections.js';
 import { ObjectId } from 'mongodb';
+import bcrypt from 'bcrypt';
+
 const saltRounds = 16;
 
 const exportedMethods = {
     async create(email, password, cwid){
-        const usersCollection = await user();
-        let password = await bcrypt.hash(password, saltRounds);
+        const usersCollection = await users();
+        password = await bcrypt.hash(password, saltRounds);
         let newUser = {
             email,
             password,
@@ -29,14 +31,14 @@ const exportedMethods = {
     },
 
     async getById(id){
-        if (id === undefined) throw 'Error: Id is undefined';
-        else if (typeof id !== 'string') throw 'Error: Id must be a string';
-        else if (valid_id(id)===false) throw 'Error: Id is not a valid ObjectId';
+        // if (id === undefined) throw 'Error: Id is undefined';
+        // else if (typeof id !== 'string') throw 'Error: Id must be a string';
+        // else if (valid_id(id)===false) throw 'Error: Id is not a valid ObjectId';
         id=new ObjectId(id);
         const usersCollection = await users();
-        const user = await tableCollection.findOne({_id:id});
+        const user = await usersCollection.findOne({_id:id});
         if (user===null) {
-            throw 'Error: No table with given Id';
+            throw 'Error: No user with given Id';
         }
         user._id=user._id.toString();
         return user;
@@ -52,7 +54,6 @@ const exportedMethods = {
         return user;
     },
 
-    
     async getByEmail(email){
         const usersCollection = await users();
         const user = await usersCollection.findOne({email:email});
