@@ -5,10 +5,11 @@ import bcrypt from 'bcrypt';
 const saltRounds = 16;
 
 const exportedMethods = {
-    async create(email, password, cwid){
+    async create(name, email, password, cwid){
         const usersCollection = await users();
         password = await bcrypt.hash(password, saltRounds);
         let newUser = {
+            name,
             email,
             password,
             cwid

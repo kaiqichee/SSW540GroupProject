@@ -49,7 +49,7 @@ async function main() {
             startTime.setDate(startTime.getDate()+i);
             let endTime = startTime;
             endTime.setHours(endTime.getHours()+1);
-            await reservations.create("person", String(i), "person"+String(i)+"@test.com", "0000000"+String(i), startTime, endTime, i+1)
+            await reservations.create("person"+String(i), "person"+String(i)+"@test.com", "0000000"+String(i), startTime, endTime, i+1)
         }
     }
     catch(e){
@@ -74,7 +74,7 @@ async function main() {
     // create users
     try{
         for (let i=1; i<=5; i++) {
-            await users.create("student"+String(i)+"@test.com", "password"+String(i), "0000000"+String(i));
+            await users.create("student"+String(i), "student"+String(i)+"@test.com", "password"+String(i), "0000000"+String(i));
         }
     }
     catch(e){

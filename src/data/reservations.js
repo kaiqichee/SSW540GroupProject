@@ -20,11 +20,10 @@ function spaces(x){
 }
 
 const exportedMethods = {
-    async create(firstName, lastName, email, cwid, startTime, endTime, tableNum, confirmed){
+    async create(name, email, cwid, startTime, endTime, tableNum, confirmed){
         const  resCollection = await reservations();
         let newRes ={
-            firstName,
-            lastName,
+            name,
             email,
             cwid,
             startTime,
