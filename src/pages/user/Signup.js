@@ -17,6 +17,7 @@ export function Signup() {
             localStorage.setItem("name", name)
             localStorage.setItem("email", email)
             localStorage.setItem("cwid", cwid)
+            localStorage.setItem('loggedIn', true);
             window.location.href = "/";
             return;
         }else{

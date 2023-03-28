@@ -14,6 +14,7 @@ export function Login() {
             localStorage.setItem("name", data.name)
             localStorage.setItem("email", data.email)
             localStorage.setItem("cwid", data.cwid)
+            localStorage.setItem('loggedIn', true);
             window.location.href = "/";
             return;
         }else{

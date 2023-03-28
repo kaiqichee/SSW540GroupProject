@@ -8,6 +8,7 @@ export function Navbar() {
                 <a className="p-2 nav-link" href="/reserve">Reserve</a>
                 <a className="p-2 nav-link" href="/signup">Signup</a>
                 <a className="p-2 nav-link" href="/login">Login</a>
+                <a className="p-2 nav-link" href="/profile">Profile</a>
             </div>
         </nav>
     );
