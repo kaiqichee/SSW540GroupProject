@@ -8,7 +8,7 @@ router
         let resInfo = req.body;
         try {
             let createRes = await resData.create(resInfo.name, resInfo.email, resInfo.startTime, resInfo.endTime,
-                resInfo.tableNum, resInfo.confirmed);
+                resInfo.tableNum);
             res.json(createRes);
         } catch (e) {
             res.sendStatus(500);

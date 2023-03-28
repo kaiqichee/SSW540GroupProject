@@ -11,7 +11,10 @@ export function Login() {
             password
           })
         if (data){
-            window.location.href = "/signup";
+            localStorage.setItem("name", data.name)
+            localStorage.setItem("email", data.email)
+            localStorage.setItem("cwid", data.cwid)
+            window.location.href = "/";
             return;
         }else{
             console.log("bad!")

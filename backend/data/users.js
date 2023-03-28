@@ -78,7 +78,7 @@ const exportedMethods = {
         const user = await this.getByEmail(email);
         let pw = await bcrypt.compare(password, user.password);
         if (pw) {
-            return true;
+            return user;
         }
         else {
             return false;

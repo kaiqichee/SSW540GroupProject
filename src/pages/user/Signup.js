@@ -14,7 +14,10 @@ export function Signup() {
             cwid
           })
         if (data){
-            window.location.href = "/login";
+            localStorage.setItem("name", name)
+            localStorage.setItem("email", email)
+            localStorage.setItem("cwid", cwid)
+            window.location.href = "/";
             return;
         }else{
             console.log("bad!")
