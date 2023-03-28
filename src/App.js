@@ -14,8 +14,6 @@ import React from 'react';
 
 
 function App() {
-  localStorage.setItem('loggedIn', false);
-
   return (
     <div className="App">
       <Navbar />
