@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import { resData } from '../data/reservations';
+import resData from '../data/reservations.js';
 
 router
     .route('/')
@@ -27,3 +27,4 @@ router
         }
     })
 
+export default router;
