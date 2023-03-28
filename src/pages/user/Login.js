@@ -19,7 +19,7 @@ export function Login() {
     }
     return (
         <div className="d-flex justify-content-center" >
-            <form className="w-25 p-3" onSubmit={verifyUser}>
+            <form className="border rounded w-25 p-3 mt-5" onSubmit={verifyUser}>
                 <div className="form-group p-2">
                     <label htmlFor="email">Email</label>
                     <input type="email" className="form-control" id="email" placeholder="stevens@stevens.edu"/>

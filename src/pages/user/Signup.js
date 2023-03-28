@@ -7,14 +7,12 @@ export function Signup() {
         let email = document.getElementById("email").value
         let cwid = document.getElementById("cwid").value
         let password = document.getElementById("password").value
-        console.log("start")
         let {data} = await axios.post('http://localhost:3001/users/', {
             name,
             email,
             password,
             cwid
           })
-        console.log("---------")
         if (data){
             window.location.href = "/login";
             return;
@@ -24,7 +22,7 @@ export function Signup() {
     }
     return (
         <div className="d-flex justify-content-center" >
-            <form className="w-25 p-3" onSubmit={createUser}>
+            <form className="border rounded w-25 p-3 mt-5" onSubmit={createUser}>
                 <div className="form-group p-2">
                     <label htmlFor="name">Name</label>
                     <input type="text" className="form-control" id="name" placeholder="Student Name"/>
@@ -41,7 +39,7 @@ export function Signup() {
                     <label htmlFor="password">Password</label>
                     <input type="password" className="form-control" id="password"/>
                 </div>
-                <button type="submit" className="btn btn-primary">Signup</button>
+                <button type="submit" className="btn btn-primary pt-2">Signup</button>
             </form>
         </div>
     );
