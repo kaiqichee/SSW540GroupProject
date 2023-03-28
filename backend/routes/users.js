@@ -22,6 +22,7 @@ router
       const newUser = await userData.addUser(userInfo.name, userInfo.email, userInfo.password, userInfo.cwid);
       res.json(newUser);
     } catch (e) {
+      console.log(e)
       res.sendStatus(500);
     }
   });
@@ -38,7 +39,8 @@ router
       const checkedUser = await userData.verifyUser(userInfo.email, userInfo.password);
       res.json(checkedUser);
     } catch (e) {
-      res.sendStatus(500);
+      console.log(e)
+      res.sendStatus(500).json({error: e});
     }
   });
 

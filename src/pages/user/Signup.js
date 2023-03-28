@@ -1,25 +1,47 @@
+import axios from "axios";
 
 export function Signup() {
+    async function createUser(e){
+        e.preventDefault()
+        let name = document.getElementById("name").value
+        let email = document.getElementById("email").value
+        let cwid = document.getElementById("cwid").value
+        let password = document.getElementById("password").value
+        console.log("start")
+        let {data} = await axios.post('http://localhost:3001/users/', {
+            name,
+            email,
+            password,
+            cwid
+          })
+        console.log("---------")
+        if (data){
+            window.location.href = "/login";
+            return;
+        }else{
+            console.log("bad!")
+        }
+    }
     return (
-        <div class="d-flex justify-content-center" >
-            <form class="w-25 p-3">
-                <div class="form-group p-2">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Student Name"/>
+        <div className="d-flex justify-content-center" >
+            <form className="w-25 p-3" onSubmit={createUser}>
+                <div className="form-group p-2">
+                    <label htmlFor="name">Name</label>
+                    <input type="text" className="form-control" id="name" placeholder="Student Name"/>
                 </div>
-                <div class="form-group p-2">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="stevens@stevens.edu"/>
+                <div className="form-group p-2">
+                    <label htmlFor="email">Email</label>
+                    <input type="email" className="form-control" id="email" placeholder="stevens@stevens.edu"/>
                 </div>
-                <div class="form-group p-2">
-                    <label for="CWID">CWID</label>
-                    <input type="text" class="form-control" id="CWID" placeholder="00000000"/>
+                <div className="form-group p-2">
+                    <label htmlFor="cwid">CWID</label>
+                    <input type="text" className="form-control" id="cwid" placeholder="00000000"/>
                 </div>
-                <div class="form-group p-2">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password"/>
+                <div className="form-group p-2">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" className="form-control" id="password"/>
                 </div>
-                <button type="submit" class="btn btn-primary">Signup</button>
+                <button type="submit" className="btn btn-primary">Signup</button>
             </form>
         </div>
     );

@@ -1,5 +1,4 @@
 
-import { redirect } from 'react-router-dom';
 import axios from "axios";
 
 export function Login() {
@@ -7,24 +6,16 @@ export function Login() {
         e.preventDefault()
         let email = document.getElementById("email").value
         let password = document.getElementById("password").value
-        console.log(email, password)
-        let verify = await axios({
-            method:"post",
-            url:"/users/login",
-            data:{
-                email,
-                password
-            }
-        })
-        console.log(verify)
-     //   let verify = await users.verifyUser(email, password);
-        if (true){
-            return redirect("/signup")
-        }
-        else{
+        let {data} = await axios.post('http://localhost:3001/users/login', {
+            email,
+            password
+          })
+        if (data){
+            window.location.href = "/signup";
+            return;
+        }else{
             console.log("bad!")
         }
-
     }
     return (
         <div className="d-flex justify-content-center" >
