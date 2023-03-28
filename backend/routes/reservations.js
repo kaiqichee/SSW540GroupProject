@@ -7,10 +7,10 @@ router
     .post(async (req, res) => {
         let resInfo = req.body;
         try {
-            let createRes = await resData.create(resInfo.name, resInfo.email, resInfo.startTime, resInfo.endTime,
-                resInfo.tableNum);
+            let createRes = await resData.create(resInfo.name, resInfo.email, resInfo.cwid, resInfo.startTime, resInfo.endTime,resInfo.tableNum);
             res.json(createRes);
         } catch (e) {
+            console.log(e)
             res.sendStatus(500);
         }
     })
