@@ -34,6 +34,12 @@ export function UserRes() {
             setShow(true);
         }
 
+        function sendToEdit(id) {
+            localStorage.setItem("currentId", id)
+            window.location.href = '/res/edit';
+            return;
+        }
+
         async function deleteRes(){
             let {data} = await axios.delete(`http://localhost:3001/reservations/${deleteId}/delete`);
             console.log(data);
@@ -71,7 +77,7 @@ export function UserRes() {
                     <td>
                       {res.confirmed ? confirmed : notConfirmed}
                     </td>
-                    <td>{editIcon}</td>
+                    <td><a onClick={() => sendToEdit(res._id)}>{editIcon}</a></td>
                     <td><a onClick={() => handleShow(res._id)}>{rubbishIcon}</a></td>
 
                 </tr>

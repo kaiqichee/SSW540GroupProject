@@ -38,11 +38,37 @@ router
         }
     })
 router
+    .route('/:id/edit')
+    .patch(async (req, res) => {
+        let resId = req.params.id;
+        let resInfo = req.body;
+        console.log("EDITING", resInfo)
+        try {
+            let updateRes = await resData.update(resId, resInfo.name, resInfo.email, resInfo.cwid, resInfo.startTime, resInfo.endTime, resInfo.tableNum, resInfo.confirmed);
+            res.json(updateRes);
+        } catch (e) {
+            console.log(e)
+            res.sendStatus(500);
+        }
+    })
+router
     .route('/:id')
     .get(async (req, res) => {
         let cwid = req.params.id
         try {
             let getRes = await resData.getByCWID(cwid);
+            res.json(getRes);
+        } catch (e) {
+            console.log(e)
+            res.sendStatus(500);
+        }
+    })
+router
+    .route('/res/:id')
+    .get(async (req, res) => {
+        let id = req.params.id
+        try {
+            let getRes = await resData.getById(id);
             res.json(getRes);
         } catch (e) {
             console.log(e)

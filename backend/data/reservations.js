@@ -91,7 +91,7 @@ const exportedMethods = {
         return `Reservation ${id} has been successfully deleted`;
     },
 
-    async  confirmRes(id){
+    async confirmRes(id){
         const  resCollection = await reservations();
         id = new ObjectId(id);
         const specificRes = await resCollection.findOne({_id:id});
@@ -109,13 +109,37 @@ const exportedMethods = {
             confirmed: true
         }
         const updatedRes = await resCollection.updateOne({_id:id}, {$set:updateRes});
+        console.log(updatedRes)
         if (updatedRes === 0){
-            throw 'Error: Table occupancy could not be updated';
+            throw 'Error: Reservation could not be updated';
         }
         let upRes = await this.getById(id.toString());
         upRes._id=upRes._id.toString();
         return upRes;
-    }
+    },
+
+    async update(id, name, email, cwid, startTime, endTime, tableNum, confirmed){
+        console.log("jasdfkjbvn")
+        const  resCollection = await reservations();
+        let resChanges ={
+            name,
+            email,
+            cwid,
+            startTime,
+            endTime,
+            tableNum,
+            confirmed
+        }
+        const updatedRes = await resCollection.updateOne({_id:new ObjectId(id)}, {$set:resChanges});
+        console.log(updatedRes)
+        // if (!insertRes.acknowledged || !insertRes.insertedId){
+        //     throw 'Error: Could not create reservation';
+        // }
+        const res=await this.getById(id.toString());
+        res._id=res._id.toString();
+        return res;
+    },
+
 };
 
 export default exportedMethods;
