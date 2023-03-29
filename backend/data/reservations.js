@@ -82,13 +82,13 @@ const exportedMethods = {
         return res;
     },
 
-    async removeByTableNum(number){
+    async removeById(id){
         const  resCollection = await reservations();
-        const deleteRes = await  resCollection.deleteOne({tableNum: number});
+        const deleteRes = await  resCollection.deleteOne({_id: new ObjectId(id)});
         if (deleteRes === 0){
             throw 'Error: Movie cannot be deleted';
         }
-        return `Table ${number} has been successfully deleted`;
+        return `Reservation ${id} has been successfully deleted`;
     },
 
     async  confirmRes(id){

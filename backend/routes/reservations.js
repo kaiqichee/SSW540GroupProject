@@ -16,12 +16,23 @@ router
     })
 
 router
-    .route('/confirm')
+    .route('/:id/confirm')
     .post(async (req, res) => {
-        let resInfo = req.body;
+        let resId = req.params.id;
         try {
-            let createRes = await resData.confirmRes(resInfo.id);
+            let createRes = await resData.confirmRes(resId);
             res.json(createRes);
+        } catch (e) {
+            res.sendStatus(500);
+        }
+    })
+router
+    .route('/:id/delete')
+    .delete(async (req, res) => {
+        let resId = req.params.id;
+        try {
+            let deleteRes = await resData.removeById(resId);
+            res.json(deleteRes);
         } catch (e) {
             res.sendStatus(500);
         }
