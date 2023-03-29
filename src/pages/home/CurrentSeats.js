@@ -34,9 +34,9 @@ export default function CurrentSeats() {
     }
 
     return (
-        <div className="d-flex flex-inline-block justify-content-center border rounded w-25 p-3 mt-5" >
+        <div className="d-flex flex-column justify-content-center border rounded w-25 p-3 mt-5" >
             <p>Current Occupied Seats: </p>
-            <p>{currentRes.length}/{totalSeats}</p>
+            <h1>{currentRes.length}/{totalSeats}</h1>
         </div>
     );
 }
