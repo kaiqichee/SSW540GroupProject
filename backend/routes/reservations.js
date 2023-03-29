@@ -42,7 +42,6 @@ router
     .patch(async (req, res) => {
         let resId = req.params.id;
         let resInfo = req.body;
-        console.log("EDITING", resInfo)
         try {
             let updateRes = await resData.update(resId, resInfo.name, resInfo.email, resInfo.cwid, resInfo.startTime, resInfo.endTime, resInfo.tableNum, resInfo.confirmed);
             res.json(updateRes);

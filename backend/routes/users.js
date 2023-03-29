@@ -7,9 +7,9 @@ router
   .get(async (req, res) => {
     try {
       let allUsers = await userData.getAll();
-      res.json(allUsers);
+      return res.json(allUsers);
     } catch (e) {
-      res.sendStatus(500);
+      return res.status(500).json({error: e});
     }
   })
   .post(async (req, res) => {
@@ -20,10 +20,10 @@ router
 
     try {
       const newUser = await userData.addUser(userInfo.name, userInfo.email, userInfo.password, userInfo.cwid);
-      res.json(newUser);
+      return res.json(newUser);
     } catch (e) {
       console.log(e)
-      res.sendStatus(500);
+      return res.status(500).json({error: e});
     }
   });
 
@@ -37,10 +37,12 @@ router
 
     try {
       const checkedUser = await userData.verifyUser(userInfo.email, userInfo.password);
-      res.json(checkedUser);
+      console.log(checkedUser)
+      return res.json(checkedUser);
     } catch (e) {
       console.log(e)
-      res.sendStatus(500).json({error: e});
+      console.log("=========")
+      return res.status(500).json({error: e});
     }
   });
 

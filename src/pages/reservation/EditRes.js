@@ -7,7 +7,6 @@ export function EditRes() {
     let [studentName, setStudentName] = React.useState(localStorage.getItem("name"));
     let [email, setEmail] = React.useState(localStorage.getItem("email"));
     let [currentId, setCurrentId] = React.useState(localStorage.getItem("currentId"));
-    let [success, setSuccess] = React.useState(true);
     let [res, setRes] = React.useState(undefined);
     let [startTime, setStartTime] = React.useState(undefined);
     let [endTime, setEndTime] = React.useState(undefined);
@@ -65,7 +64,7 @@ export function EditRes() {
                 let {data} = await axios.get(`http://localhost:3001/reservations/res/${currentId}/`);
                 setRes(data);
                 document.getElementById("updateForm").reset();
-                setSuccess(false)
+                window.location.href="/myReservations"
                 return;
             }else{
                 console.log("bad!")
@@ -94,8 +93,7 @@ export function EditRes() {
                         <label htmlFor="tableNum">Table #</label>
                         <input type="number" className="form-control" placeholder={res && res.tableNum} id="tableNum"/>
                     </div>
-                    <button type="submit" className="btn btn-primary pt-2">Reserve</button>
-                    <p hidden={success} className="pt-2 text-success">Success creating reservation!</p>
+                    <button type="submit" className="btn btn-primary pt-2">Update!</button>
                     {/* <p hidden={error}>Error creating reservation, please try again!</p> */}
                 </form>
             </div>

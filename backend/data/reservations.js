@@ -119,7 +119,6 @@ const exportedMethods = {
     },
 
     async update(id, name, email, cwid, startTime, endTime, tableNum, confirmed){
-        console.log("jasdfkjbvn")
         const  resCollection = await reservations();
         let resChanges ={
             name,
@@ -131,7 +130,6 @@ const exportedMethods = {
             confirmed
         }
         const updatedRes = await resCollection.updateOne({_id:new ObjectId(id)}, {$set:resChanges});
-        console.log(updatedRes)
         // if (!insertRes.acknowledged || !insertRes.insertedId){
         //     throw 'Error: Could not create reservation';
         // }
