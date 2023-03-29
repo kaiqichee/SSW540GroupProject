@@ -12,16 +12,16 @@ export function UserRes() {
     let [allRes, setAllRes] = useState([]);
     let [show, setShow] = useState(false);
     let [deleteId, setDeleteId] = useState("");
-    let [updated, setUpdate] = useState(false);
 
     useEffect(() => {
         async function getAllRes(id){
             let {data} = await axios.get(`http://localhost:3001/reservations/${id}/`);
-            setAllRes(data);
+            setAllRes(data.sort((a,b) => (new Date(b.startTime))-(new Date(a.startTime))));
             return
         }
         getAllRes(cwid);
     }, [])
+    
     if(localStorage.getItem("loggedIn") == "false"){
         window.location.href = "/login";
         return;
@@ -49,7 +49,7 @@ export function UserRes() {
             console.log(data);
             let updateData = await axios.get(`http://localhost:3001/reservations/${cwid}/`);
             data = updateData.data;
-            setAllRes(data);
+            setAllRes(data.sort((a,b) => ((new Date(b.startTime))-new Date(a.startTime))));
             setShow(false);
         }
        
