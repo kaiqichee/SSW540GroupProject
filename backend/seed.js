@@ -22,17 +22,17 @@ async function main() {
         console.log(e);
     }
 
-    //change tables 2-7, 14, and 16 to occupied
-    try{
-        for (let i=2; i<=7; i++) {
-            await tables.updateOccupancy(i, 1)
-        }
-        await tables.updateOccupancy(14, 1)
-        await tables.updateOccupancy(16, 3)
-    }
-    catch(e){
-        console.log(e);
-    }
+    // //change tables 2-7, 14, and 16 to occupied
+    // try{
+    //     for (let i=2; i<=7; i++) {
+    //         await tables.updateOccupancy(i, 1)
+    //     }
+    //     await tables.updateOccupancy(14, 1)
+    //     await tables.updateOccupancy(16, 3)
+    // }
+    // catch(e){
+    //     console.log(e);
+    // }
 
     //delete table 17
     try{
@@ -74,7 +74,7 @@ async function main() {
     // create users
     try{
         for (let i=1; i<=5; i++) {
-            await users.create("student"+String(i), "student"+String(i)+"@test.com", "password"+String(i), "0000000"+String(i));
+            await users.addUser("student"+String(i), "student"+String(i)+"@test.com", "password"+String(i), "0000000"+String(i));
         }
     }
     catch(e){

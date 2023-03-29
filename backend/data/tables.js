@@ -32,7 +32,6 @@ const exportedMethods = {
         let newTable ={
             number,
             seats,
-            occupied: 0
         }
         const insertTable = await tableCollection.insertOne(newTable);
         if (!insertTable.acknowledged || !insertTable.insertedId){
@@ -84,25 +83,25 @@ const exportedMethods = {
         return `Table ${number} has been successfully deleted`;
     },
 
-    async  updateOccupancy(number, value){
-        const tableCollection = await tables();
-        const specificTable = await tableCollection.findOne({number:number});
-        if (specificTable === null){
-            throw 'Error: No table with given number';
-        }
-        let updateTable = {
-            number: specificTable.number,
-            seats: specificTable.seats,
-            occupied: value
-        }
-        const updatedTable = await tableCollection.updateOne({number:number}, {$set:updateTable});
-        if (updatedTable === 0){
-            throw 'Error: Table occupancy could not be updated';
-        }
-        let upTable=await this.getByNumber(number);
-        upTable._id=upTable._id.toString();
-        return upTable;
-    }
+    // async  updateOccupancy(number, value){
+    //     const tableCollection = await tables();
+    //     const specificTable = await tableCollection.findOne({number:number});
+    //     if (specificTable === null){
+    //         throw 'Error: No table with given number';
+    //     }
+    //     let updateTable = {
+    //         number: specificTable.number,
+    //         seats: specificTable.seats,
+    //         occupied: value
+    //     }
+    //     const updatedTable = await tableCollection.updateOne({number:number}, {$set:updateTable});
+    //     if (updatedTable === 0){
+    //         throw 'Error: Table occupancy could not be updated';
+    //     }
+    //     let upTable=await this.getByNumber(number);
+    //     upTable._id=upTable._id.toString();
+    //     return upTable;
+    // }
 };
 
 export default exportedMethods;
