@@ -62,6 +62,16 @@ const exportedMethods = {
         return res;
     },
 
+    async getByCWID(cwid){
+        const  resCollection = await reservations();
+        const res = await  resCollection.find({cwid:cwid}).toArray();
+        if (res===null) {
+            throw 'Error: No reservation with given cwid';
+        }
+        res.map(r => r._id.toString());
+        return res;
+    },
+
     async getByTableNum(number){
         const  resCollection = await reservations();
         const res = await  resCollection.findOne({tableNum:number});

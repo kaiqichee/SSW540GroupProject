@@ -26,5 +26,17 @@ router
             res.sendStatus(500);
         }
     })
+router
+    .route('/:id')
+    .get(async (req, res) => {
+        let cwid = req.params.id
+        try {
+            let getRes = await resData.getByCWID(cwid);
+            res.json(getRes);
+        } catch (e) {
+            console.log(e)
+            res.sendStatus(500);
+        }
+    })
 
 export default router;

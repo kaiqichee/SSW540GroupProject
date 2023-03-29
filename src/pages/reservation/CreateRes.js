@@ -17,7 +17,6 @@ export function CreateRes() {
             let tableNum = document.getElementById("tableNum").value
             let cwid = localStorage.getItem("cwid")
 
-            console.log()
             let {data} = await axios.post('http://localhost:3001/reservations/', {
                 name: studentName,
                 email,

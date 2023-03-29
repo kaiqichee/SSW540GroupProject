@@ -18,6 +18,8 @@ export function Navbar() {
                 <div className="d-flex">
                     <a className="p-2 nav-link" href="/reserve">Reserve</a>
                     <a className="p-2 nav-link" href="/profile">Profile</a>
+                    <a className="p-2 nav-link" href="/myReservations">Reservations</a>
+
                 </div>
             </nav>
         );

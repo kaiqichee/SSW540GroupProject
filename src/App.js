@@ -10,6 +10,7 @@ import { Profile } from './pages/user/Profile.js';
 import { Home } from './pages/Home.js';
 import { Navbar } from './pages/common/Navbar.js';
 import { CreateRes } from './pages/reservation/CreateRes.js';
+import { UserRes } from './pages/reservation/UserRes.js';
 import React from 'react';
 
 
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/reserve" element={<CreateRes/>} />
           <Route exact path="/profile" element={<Profile/>} />
+          <Route exact path="/myReservations" element={<UserRes/>} />
         </Routes>
       </Router>
     </div>
