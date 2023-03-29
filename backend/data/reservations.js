@@ -99,8 +99,6 @@ const exportedMethods = {
             throw 'Error: No reservation with given id';
         }
         let updateRes = {
-            firstName: specificRes.firstName,
-            lastName: specificRes.lastName,
             email: specificRes.email,
             cwid: specificRes.cwid,
             startTime: specificRes.startTime,

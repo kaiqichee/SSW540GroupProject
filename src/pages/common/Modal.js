@@ -14,7 +14,7 @@ export default function MyModal(props) {
 
                     <Modal.Footer>
                     <Button variant="secondary" onClick={props.handleClose}>Close</Button>
-                    <Button variant="danger" onClick={props.delete}>Confirm</Button>
+                    <Button variant={props.buttonCol} onClick={props.delete}>Confirm</Button>
                     </Modal.Footer>
             </Modal>
         );
