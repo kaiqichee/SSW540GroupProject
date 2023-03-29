@@ -135,7 +135,6 @@ export function UserRes() {
                     </td>
                     <td><a onClick={() => sendToEdit(res._id, editable)}>{editIcon}</a></td>
                     <td><a onClick={() => handleShow(res._id)}>{rubbishIcon}</a></td>
-
                 </tr>
             )
         }  

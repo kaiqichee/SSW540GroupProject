@@ -4,6 +4,15 @@ import resData from '../data/reservations.js';
 
 router
     .route('/')
+    .get(async (req, res) => {
+        try {
+            let allRes = await resData.getAll();
+            res.json(allRes);
+        } catch (e) {
+            console.log(e)
+            res.sendStatus(500);
+        }
+    })
     .post(async (req, res) => {
         let resInfo = req.body;
         try {

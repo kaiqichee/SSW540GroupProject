@@ -1,12 +1,9 @@
-
-
+import CurrentSeats from "./home/CurrentSeats.js"
 export function Home() {
-    console.log(localStorage.getItem("loggedIn"))
-    console.log(localStorage.getItem("name"))
 
     return (
-        <div className="" >
-            
+        <div className="d-flex justify-content-center w-75" >
+            <CurrentSeats />
         </div>
     );
 }
