@@ -48,6 +48,16 @@ export function UserRes() {
             setAllRes(data);
             setShow(false);
         }
+       
+         
+        let timeOptions = {
+            weekday: "long",
+            year: "2-digit",
+            month: "numeric",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
 
         function tableRow(res, i){
             let confirmed =   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle" viewBox="0 0 16 16">
@@ -71,8 +81,8 @@ export function UserRes() {
             return (
                 <tr  key={i}>
                     <th scope="row">{i+1}</th>
-                    <td>{res.startTime}</td>
-                    <td>{res.endTime}</td>
+                    <td>{(new Date(res.startTime)).toLocaleString("en-US", timeOptions)}</td>
+                    <td>{(new Date(res.endTime)).toLocaleString("en-US", timeOptions)}</td>
                     <td>{res.tableNum}</td>
                     <td>
                       {res.confirmed ? confirmed : notConfirmed}
