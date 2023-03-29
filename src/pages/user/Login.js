@@ -4,6 +4,7 @@ import {useState} from "react"
 
 export function Login() {
     let [error, setError] = useState(true);
+    let [loading, setLoading] = useState(false);
 
     if(localStorage.getItem("loggedIn") == "true"){
         window.location.href = "/";
@@ -12,13 +13,16 @@ export function Login() {
     else {
         async function verifyUser(e){
             e.preventDefault()
+            setError(true)
             let email = document.getElementById("email").value
             let password = document.getElementById("password").value
             try {
+                setLoading(true)
                 let {data} = await axios.post('http://localhost:3001/users/login', {
                     email,
                     password
                 })
+                setLoading(false)
                 if (data) {
                     localStorage.setItem("name", data.name)
                     localStorage.setItem("email", data.email)
@@ -31,8 +35,24 @@ export function Login() {
                     throw "Invalid Login";
                 }
             }catch(e){
+                setLoading(false)
                 setError(false)
                 console.log("bad!")
+            }
+        }
+
+        function submitButton(){
+            if (loading) {
+                return (
+                    <button type="submit" className="btn btn-primary" disabled>
+                    <div class="spinner-border spinner-border-sm" role="status" />
+                    {` Loading`}</button>
+                )
+            }
+            else{
+                return (
+                    <button type="submit" className="btn btn-primary">Login</button>
+                )
             }
         }
         return (
@@ -46,7 +66,7 @@ export function Login() {
                         <label htmlFor="password">Password</label>
                         <input type="password" className="form-control" id="password" onChange={() => setError(true)} />
                     </div>
-                    <button type="submit" className="btn btn-primary">Login</button>
+                    {submitButton()}
                     <p hidden={error} className="pt-2 text-danger">Ohno, invalid login, please try again!</p>
                 </form>
             </div>
