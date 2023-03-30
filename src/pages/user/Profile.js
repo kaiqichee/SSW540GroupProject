@@ -19,7 +19,7 @@ export function Profile() {
         return (
             <div className="d-flex justify-content-center" >
                 <div className="border rounded w-25 p-3 mt-5">
-                    <h3 className=''>Hello {studentName}!</h3>
+                    <h3 className=''><u>Hello {studentName}!</u></h3>
                     <div className="p-2">
                     <p className=''>Name: {studentName}</p>
                     </div>
